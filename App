@@ -1,0 +1,83 @@
+
+class Ship {
+	private int designation;
+	private String shipName;
+
+	public Ship(int designation, String shipName) {
+		this.designation = designation;
+		this.shipName = shipName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + designation;
+		result = prime * result + ((shipName == null) ? 0 : shipName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ship other = (Ship) obj;
+		if (designation != other.designation)
+			return false;
+		if (shipName == null) {
+			if (other.shipName != null)
+				return false;
+		} else if (!shipName.equals(other.shipName))
+			return false;
+		return true;
+	}
+
+}
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		Ship ship1 = new Ship(5, "Test");
+		Ship ship2 = new Ship(5, "Test");
+		
+		// The == syntax compares two references and determines if they are both pointing to the same object
+		System.out.println(ship1 == ship2);
+		// Returns false. Ship 1 & 2 are distinct objects
+		
+		// the .equals method can be used compare semantics of the objects referred to, 
+		// by overriding the default .equals method inside the class as done above.
+		
+		System.out.println(ship1.equals(ship2));
+		// Returns true, for ship 1 & 2 are different objects that contain identical values which .equals checked
+		
+		Double val1 = 40.4;
+		Double val2 = 40.4;
+		
+		System.out.println(val1 == val2);
+		// Returns false, val1 & val2 are considered different objects
+		System.out.println(val1.equals(val2));
+		// Returns true, val1 and val2 contain identical values
+		
+		Integer int1 = 1;
+		Integer int2 = 5;
+		
+		System.out.println(int1.equals(int2));
+		// Returns False! Self Explanatory.
+		
+		String text1 = "Zalaxi";
+		String text2 = "Zalaxijfhdgidfjh".substring(0, 6);
+		
+		System.out.println(text2);
+		
+		System.out.println(text1.equals(text2));
+		// Returns true. After substring is applied, both distinct reference variables contain the same value.
+		
+		
+			
+	}
+}
